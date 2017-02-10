@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .tool{
+            animation:toscale 2.2s;
+            -webkit-animation:toscale 2.2s;
+        }
+        @keyframes toscale
+        {
+            from {transform: scale(2.0);
+                opacity:0;}
+            to {transform: scale(1);
+                opacity:1;}
+        }
+        @-webkit-keyframes toscale
+        {
+            from {transform: scale(2.0);
+                opacity:0;}
+            to {transform: scale(1);
+                opacity:1;}
+        }
+
+
+        *{
+            padding:0;
+            margin:0;
+        }
+        ul,ol {
+            list-style-type: none;
+        }
+
+        #carousel{
+            width: 500px;
+            height: 250px;
+            margin:100px auto;
+            position: relative;
+        }
+        #carousel .single{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: -2;
+        }
+    </style>
+    <script src="./jquery-3.1.1.js"></script>
+    <script>
+        $(function(){
+            var imgs = $('#carousel > .single');
+            var banner_index = 0;  //2数器
+            setInterval(function () {
+                if (banner_index >= imgs.length) {
+                    banner_index = 0;
+                    imgs.css('zIndex', '-2');
+                }
+                imgs.removeClass('tool');
+                imgs.eq(banner_index).css('zIndex', banner_index - 1).addClass('tool');
+                banner_index++;
+            }, 5000);
+        });
+    </script>
+</head>
+<body>
+    <div id="carousel">
+        <img src="img/banner01.jpg" class="single" alt="第一张图">
+        <img src="img/banner02.jpg" class="single" alt="第二张图">
+        <img src="img/banner03.jpg" class="single" alt="第三张图">
+    </div>
+</body>
+</html>
